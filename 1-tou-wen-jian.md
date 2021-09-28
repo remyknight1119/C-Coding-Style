@@ -33,7 +33,7 @@
 
 > * 很难判断什么时候该用前置声明，什么时候该用 `#include` 。极端情况下，用前置声明代替 `#include` 甚至都会暗暗地改变代码的含义：
 >
->   > ```text
+>   > ```c
 >   > // b.h:
 >   > struct B {};
 >   > struct D : B {};
@@ -87,7 +87,7 @@
 
 项目内头文件应按照项目源代码目录树结构排列, 避免使用 UNIX 特殊的快捷目录 `.` \(当前目录\) 或 `..` \(上级目录\). 例如, `google-awesome-project/src/base/logging.h` 应该按如下方式包含:
 
-```text
+```c
 #include "base/logging.h"
 ```
 
@@ -108,7 +108,7 @@
 
 举例来说, `google-awesome-project/src/foo/internal/fooserver.cc` 的包含次序如下:
 
-> ```text
+> ```c
 > #include "foo/public/fooserver.h" // 优先位置
 >
 > #include <sys/types.h>
@@ -126,7 +126,7 @@
 
 有时，平台特定（system-specific）代码需要条件编译（conditional includes），这些代码可以放到其它 includes 之后。当然，您的平台特定代码也要够简练且独立，比如：
 
-> ```text
+> ```c
 > #include "foo/public/fooserver.h"
 >
 > #include "base/port.h"  // For LANG_CXX11.
